@@ -1,9 +1,14 @@
-#import matplotlib
-#matplotlib.use("Agg")
+# USAGE
+# python train_model.py
 
-from tensorflow.keras.preprocessing.image import ImageDataGenerator
-from tensorflow.keras.callbacks import LearningRateScheduler
-from tensorflow.keras.optimizers import Adagrad
+# set the matplotlib backend so figures can be saved in the background
+import matplotlib
+matplotlib.use("Agg")
+
+
+from keras.preprocessing.image import ImageDataGenerator
+from keras.callbacks import LearningRateScheduler
+from keras.optimizers import Adagrad
 from keras.utils import np_utils
 from sklearn.metrics import classification_report
 from sklearn.metrics import confusion_matrix
@@ -20,11 +25,11 @@ ap = argparse.ArgumentParser()
 ap.add_argument("-p", "--plot", type=str, default="plot.png", help="path to output loss/accuracy plot")
 args = vars(ap.parse_args())
 
-NUM_EPOCHS = 40     # number of epochs
+NUM_EPOCHS = 10     # number of epochs
 INIT_LR = 1e-2      # learning rate
 BS = 32             # batch size
 
-trainPaths = list(paths.list_images(config.TEST_PATH))
+trainPaths = list(paths.list_images(config.TRAIN_PATH))
 totalTrain = len(trainPaths)
 totalVal = len(list(paths.list_images(config.VAL_PATH)))
 totalTest = len(list(paths.list_images(config.TEST_PATH)))
@@ -39,16 +44,15 @@ classWeight = classTotals.max() / classTotals
 # method purposely perturbs training examples, changing their
 # appearance slightly, before passing them into the network for training
 trainAug = ImageDataGenerator(
-    rescale= 1/255.0,
-    rotation_range=20,
-    zoom_range=20,
-    width_shift_range=0.1,
-    height_shift_range=0.1,
-    shear_range=0.05,
-    horizontal_flip=True,
-    vertical_flip=True,
-    fill_mode="neatest"
-)
+	rescale=1 / 255.0,
+	rotation_range=20,
+	zoom_range=0.05,
+	width_shift_range=0.1,
+	height_shift_range=0.1,
+	shear_range=0.05,
+	horizontal_flip=True,
+	vertical_flip=True,
+	fill_mode="nearest")
 
 valAug = ImageDataGenerator(
     rescale=1/255.0
@@ -70,7 +74,7 @@ valGen = valAug.flow_from_directory(
     class_mode="categorical",
     target_size=(48, 48),
     color_mode="rgb",
-    shuffle=True,
+    shuffle=False,
     batch_size=BS
 )
 
@@ -80,7 +84,7 @@ testGen = valAug.flow_from_directory(
     class_mode="categorical",
     target_size=(48, 48),
     color_mode="rgb",
-    shuffle=True,
+    shuffle=False,
     batch_size=BS
 )
 

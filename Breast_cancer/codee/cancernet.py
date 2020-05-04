@@ -1,6 +1,6 @@
 # CANCERNET consist of depthwise separable convolutions (more in Readme.md)
 
-from tensorflow.keras.models import Sequential
+from keras.models import Sequential
 from keras.layers.normalization import BatchNormalization
 from keras.layers.convolutional import SeparableConv2D
 from keras.layers.convolutional import MaxPooling2D
@@ -8,7 +8,7 @@ from keras.layers.core import Activation
 from keras.layers.core import Flatten
 from keras.layers.core import Dropout
 from keras.layers.core import Dense
-from tensorflow.keras import backend as K
+from keras import backend as K
 
 class CancerNet:
     @staticmethod
