@@ -22,13 +22,9 @@ y-coordinate of the crop: 1,101
 
 Class label: 0 (0 indicates no IDC while 1 indicates IDC)
 
-NEGATIVE on CARCER : 
+Dataset consist of these pictures (positive and negative examples):
 
-![nocancer](8863_idx5_x101_y1301_class0.png)
-
-POSITIVE on CARCER : 
-
-![nocancer](8863_idx5_x1001_y851_class1.png)
+![picture](picture.png)
 
 # Convolution neural network - CancerNet
 
