@@ -22,6 +22,14 @@ y-coordinate of the crop: 1,101
 
 Class label: 0 (0 indicates no IDC while 1 indicates IDC)
 
+NEGATIVE on CARCER : 
+
+![nocancer](8863_idx5_x101_y1301_class0.png)
+
+POSITIVE on CARCER : 
+
+![nocancer](8863_idx5_x1001_y851_class1.png)
+
 # Convolution neural network - CancerNet
 
 CancerNet consist of:
@@ -35,4 +43,18 @@ Depthwise separable convolution:
 - Requires less computation
 - Perform better than standard convolution in some situations
 
+## RESULT:
 
+Deep learning algorithm can recognize cancer with around 85% accuracy. 
+
+Better information is to look on sensitivy and specificity.
+
+Sensitivity measures the proportion of the true positives that were also predicted as positive (around 85%).
+
+Specificity measures true negatives (84.70%).
+
+You need to be really careful with false negative here — you don’t want to classify someone as “No cancer” when they are in fact “Cancer positive”.
+
+False positive rate is also important — you don’t want to mistakenly classify someone as “Cancer positive” and then subject them to painful, expensive, and invasive treatments when they don’t actually need them.
+
+![result](plot.png)
